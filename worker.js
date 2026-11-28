@@ -118,7 +118,7 @@ export default {
       if (!res.ok) return proxyResponse(res);
 
       const manifest = await res.json();
-      manifest.id = `${manifest.id \vert{}\vert{} 'community.sports.fly'}.custom`; manifest.name = `${manifest.name || 'Sports Streams'} (Custom Cards)`;
+      manifest.id = `${manifest.id || 'community.sports.fly'}.custom`; manifest.name = `${manifest.name || 'Sports Streams'} (Custom Cards)`;
 
       return jsonResponse(manifest);
     }
@@ -161,7 +161,7 @@ function rewriteMeta(meta, catalogId, workerOrigin) {
 
   const isLive =
     catalogId === 'sports_live' ||
-    /\blive\b/i.test(`${meta.releaseInfo \vert{}\vert{} ''}${desc}`);
+    /\blive\b/i.test(`${meta.releaseInfo || ''}${desc}`);
 
   // Split "Team A vs Team B" or "Team A @ Team B"
   const vsMatch = rawName.match(/^(.+?)\s+(?:vs\.?|v\.?|@)\s+(.+)$/i);
